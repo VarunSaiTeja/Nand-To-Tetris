@@ -42,5 +42,42 @@ CHIP ALU {
         ng; // 1 if (out < 0),  0 otherwise
 
     PARTS:
-   // Put you code here:
+    //if zx=1 out 0 because all b is 0
+    Mux16(a=x, b=false, sel=zx, out=xzx);
+    //notxzx is used in nx negation
+    Not16(in=xzx, out=notxzx);
+    //if nx=1 out=notxzx else out=xzx
+    Mux16(a=xzx, b=notxzx, sel=nx, out=xval);
+
+    //if zy=1 out 0 because all b is 0
+    Mux16(a=y, b=false, sel=zy, out=yzy);
+    //notyzy is used in ny negation
+    Not16(in=yzy, out=notyzy);
+    //if ny=1 out=notyzy else out=yzy
+    Mux16(a=yzy, b=notyzy, sel=ny, out=yval);
+
+    //add = x + y
+    Add16(a=xval, b=yval, out=addxy);
+    //and = x & y
+    And16(a=xval, b=yval, out=andxy);
+    //if f=1 out=andxy else out=addxy
+    Mux16(a=andxy, b=addxy, sel=f, out=fval);
+
+    //calculating ng value
+    //notfval used in no negation
+    Not16(in=fval, out=notfval);
+    //if no=1 out=notfval else out=fval
+    //16 bit chip divided into two 8 bit chips named temp1 and temp2
+    //if out[15] is 1 means out negative, so ng also 1 means out[15]=ng
+    Mux16(a=fval, b=notfval, sel=no, out=out,out[0..7]=temp1,out[8..15]=temp2,out[15]=ng);
+    
+    //calculating zr value
+    //output of first 8 bit chip by Or8Way gate is orway1
+    Or8Way(in=temp1, out=orway1);
+    //output of second 8 bit chip by Or8Way gate is orway2
+    Or8Way(in=temp2, out=orway2);
+    //both outputs are passed to one more Or gate for final output
+    Or(a=orway1, b=orway2, out=zrval);
+    //if final output here is 0 then zr=1 else zr=0
+    Not(in=zrval, out=zr);
 }
