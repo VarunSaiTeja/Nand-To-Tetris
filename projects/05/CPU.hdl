@@ -39,5 +39,52 @@ CHIP CPU {
         pc[15];          // address of next instruction
 
     PARTS:
-    // Put your code here:
+    // to get type of instruction
+    // Ainstruction & Cinstruction are type of boolean & vice versa too
+    Not(in=instruction[15], out=Ainstruction);
+    Not(in=Ainstruction, out=Cinstruction);
+
+    // assumed C-inst and checking dest to A-reg?s based on boolean 5th bit of instruction
+    And(a=Cinstruction, b=instruction[5], out=ALUtoA);
+    // instruction divided into 16 bits
+    Mux16(a=instruction, b=ALUout, sel=ALUtoA, out=AregIn);
+
+    // load A if A-inst or C-inst&dest to A-reg
+    Or(a=Ainstruction, b=ALUtoA, out=loadA);
+    ARegister(in=AregIn, load=loadA, out=Aout);
+
+    // select A or M based on 12th bit of instruction
+    Mux16(a=Aout, b=inM, sel=instruction[12], out=AMout);
+
+    // ALU to execute instruction
+    ALU(x=Dout, y=AMout, zx=instruction[11], nx=instruction[10], 
+        zy=instruction[9], ny=instruction[8], f=instruction[7],
+        no=instruction[6], out=ALUout, zr=ZRout, ng=NGout);
+
+    // grabbing address of memory from ALUout if need to write in memory
+    Or16(a=false, b=Aout, out[0..14]=addressM);
+    Or16(a=false, b=ALUout, out=outM);
+    And(a=Cinstruction, b=instruction[3], out=writeM);
+
+    // load the D register from ALU based on boolean 4th bit of instruction
+    And(a=Cinstruction,b=instruction[4],out=loadD);
+    DRegister(in=ALUout, load=loadD, out=Dout);
+
+    // prepareing for Jump
+    Or(a=ZRout,b=NGout,out=ZeroOrNeg);
+    Not(in=ZeroOrNeg, out=positive);
+    
+    And(a=NGout, b=instruction[2], out=jNegative);
+    And(a=ZRout, b=instruction[1], out=jEqual);
+    And(a=positive, b=instruction[0], out=jPositive);
+    
+    Or(a=jEqual, b=jNegative, out=jEqualOrNeg);
+    Or(a=jEqualOrNeg, b=jPositive, out=jumpToA);
+
+    // jumps only if instruction is C type
+    And(a=Cinstruction, b=jumpToA, out=PCload);
+
+    // PCinc vice versa with PCload
+    Not(in=PCload, out=PCinc);
+    PC(in=Aout, inc=PCinc, load=PCload, reset=reset, out[0..14]=pc);
 }
