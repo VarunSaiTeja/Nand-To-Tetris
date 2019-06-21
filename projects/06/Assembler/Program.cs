@@ -9,7 +9,17 @@ namespace Assembler
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            string asm_name;
+
+            if (args.Length == 0)
+            {
+                Console.Write("File name : ");
+                asm_name = Console.ReadLine();
+            }
+            else
+            {
+                asm_name = args[0];
+            }
             Console.ReadLine();
         }
     }
