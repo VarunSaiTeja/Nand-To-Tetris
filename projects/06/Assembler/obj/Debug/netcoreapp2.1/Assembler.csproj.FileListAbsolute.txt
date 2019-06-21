@@ -1,0 +1,11 @@
+D:\Coding\Nand To Tetris\projects\06\Assembler\bin\Debug\netcoreapp2.1\Assembler.deps.json
+D:\Coding\Nand To Tetris\projects\06\Assembler\bin\Debug\netcoreapp2.1\Assembler.runtimeconfig.json
+D:\Coding\Nand To Tetris\projects\06\Assembler\bin\Debug\netcoreapp2.1\Assembler.runtimeconfig.dev.json
+D:\Coding\Nand To Tetris\projects\06\Assembler\bin\Debug\netcoreapp2.1\Assembler.dll
+D:\Coding\Nand To Tetris\projects\06\Assembler\bin\Debug\netcoreapp2.1\Assembler.pdb
+D:\Coding\Nand To Tetris\projects\06\Assembler\obj\Debug\netcoreapp2.1\Assembler.csprojAssemblyReference.cache
+D:\Coding\Nand To Tetris\projects\06\Assembler\obj\Debug\netcoreapp2.1\Assembler.csproj.CoreCompileInputs.cache
+D:\Coding\Nand To Tetris\projects\06\Assembler\obj\Debug\netcoreapp2.1\Assembler.AssemblyInfoInputs.cache
+D:\Coding\Nand To Tetris\projects\06\Assembler\obj\Debug\netcoreapp2.1\Assembler.AssemblyInfo.cs
+D:\Coding\Nand To Tetris\projects\06\Assembler\obj\Debug\netcoreapp2.1\Assembler.dll
+D:\Coding\Nand To Tetris\projects\06\Assembler\obj\Debug\netcoreapp2.1\Assembler.pdb
