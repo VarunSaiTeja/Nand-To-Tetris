@@ -27,6 +27,7 @@ namespace Assembler
             Get_All_Lines(asm_name);
             Add_Predefiend_Symbols();
             Add_Instructions_and_Label_Symbols();
+            Add_Variable_Symbols();
             Translate_Symbols();
             Console.ReadLine();
         }
@@ -59,6 +60,28 @@ namespace Assembler
                             Instructions.Add(count++, temp);
                         else
                             Symbol_Table.Add(temp.Substring(1, temp.Length - 2), count);
+                    }
+                }
+            }
+        }
+        static void Add_Variable_Symbols()
+        {
+            int n = 16;
+            foreach (var item in Instructions)
+            {
+                if (item.Value.StartsWith('@') && !(Char.IsDigit(item.Value[1])))
+                {
+                    if (!Symbol_Table.ContainsKey(item.Value.Substring(1)))
+                    {
+                        while (true)
+                        {
+                            if (!Symbol_Table.ContainsValue(n))
+                            {
+                                Symbol_Table.Add(item.Value.Substring(1), n++);
+                                break;
+                            }
+                            n++;
+                        }
                     }
                 }
             }
