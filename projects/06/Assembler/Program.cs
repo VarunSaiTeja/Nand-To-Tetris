@@ -28,9 +28,22 @@ namespace Assembler
             Add_Instructions_and_Label_Symbols();
             Add_Variable_Symbols();
             Translate_Symbols();
+            Convert_to_Binary();
+            Console.WriteLine("Binary file "+Path.GetFileNameWithoutExtension(asm_name)+".hack is generated");
             Console.ReadLine();
         }
-
+        static void Convert_to_Binary()
+        {
+            StreamWriter Hack_File=new StreamWriter(Path.GetFileNameWithoutExtension(asm_name)+".hack");
+            foreach (var item in Instructions)
+            {
+                if(item.Value.StartsWith('@'))
+                Hack_File.WriteLine("Binary Converted A Instrucion");
+                else
+                Hack_File.WriteLine("Binary Converted C Instrucion");
+            }
+            Hack_File.Close();
+        }
         static void Get_All_Lines()
         {
             StreamReader asm_file = new StreamReader(asm_name);
