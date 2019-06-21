@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
@@ -29,20 +28,24 @@ namespace Assembler
             Add_Variable_Symbols();
             Translate_Symbols();
             Convert_to_Binary();
-            Console.WriteLine("Binary file "+Path.GetFileNameWithoutExtension(asm_name)+".hack is generated");
+            Console.WriteLine("Binary file " + Path.GetFileNameWithoutExtension(asm_name) + ".hack is generated");
             Console.ReadLine();
         }
         static void Convert_to_Binary()
         {
-            StreamWriter Hack_File=new StreamWriter(Path.GetFileNameWithoutExtension(asm_name)+".hack");
+            StreamWriter Hack_File = new StreamWriter(Path.GetFileNameWithoutExtension(asm_name) + ".hack");
             foreach (var item in Instructions)
             {
-                if(item.Value.StartsWith('@'))
-                Hack_File.WriteLine("Binary Converted A Instrucion");
+                if (item.Value.StartsWith('@'))
+                    Hack_File.WriteLine(Translate_A_Type(item.Value.Substring(1)));
                 else
-                Hack_File.WriteLine("Binary Converted C Instrucion");
+                    Hack_File.WriteLine("Binary Converted C Instrucion");
             }
             Hack_File.Close();
+        }
+        static string Translate_A_Type(string instruction)
+        {
+            return ("0" + Convert.ToString(Int32.Parse(instruction), 2).PadLeft(15, '0'));
         }
         static void Get_All_Lines()
         {
