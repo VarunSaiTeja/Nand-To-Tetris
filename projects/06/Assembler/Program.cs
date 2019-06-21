@@ -8,6 +8,7 @@ namespace Assembler
     class Program
     {
         static List<string> Lines = new List<string>();
+        static Dictionary<string, int> Symbol_Table = new Dictionary<string, int>();
         static void Main(string[] args)
         {
             string asm_name;
@@ -23,6 +24,7 @@ namespace Assembler
             }
 
             Get_All_Lines(asm_name);
+            Add_Predefiend_Symbols();
             Console.ReadLine();
         }
 
@@ -34,6 +36,33 @@ namespace Assembler
                 Lines.Add(asm_file.ReadLine().Trim());
             }
             asm_file.Close();
+        }
+
+        static void Add_Predefiend_Symbols()
+        {
+            Symbol_Table.Add("R0", 0);
+            Symbol_Table.Add("R1", 1);
+            Symbol_Table.Add("R2", 2);
+            Symbol_Table.Add("R3", 3);
+            Symbol_Table.Add("R4", 4);
+            Symbol_Table.Add("R5", 5);
+            Symbol_Table.Add("R6", 6);
+            Symbol_Table.Add("R7", 7);
+            Symbol_Table.Add("R8", 8);
+            Symbol_Table.Add("R9", 9);
+            Symbol_Table.Add("R10", 10);
+            Symbol_Table.Add("R11", 11);
+            Symbol_Table.Add("R12", 12);
+            Symbol_Table.Add("R13", 13);
+            Symbol_Table.Add("R14", 14);
+            Symbol_Table.Add("R15", 15);
+            Symbol_Table.Add("SCREEN", 16384);
+            Symbol_Table.Add("KBD", 24576);
+            Symbol_Table.Add("SP", 0);
+            Symbol_Table.Add("LCL", 1);
+            Symbol_Table.Add("ARG", 2);
+            Symbol_Table.Add("THIS", 3);
+            Symbol_Table.Add("THAT", 4);
         }
     }
 }
