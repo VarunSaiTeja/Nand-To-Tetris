@@ -9,6 +9,7 @@ namespace Assembler
     {
         static List<string> Lines = new List<string>();
         static Dictionary<string, int> Symbol_Table = new Dictionary<string, int>();
+        static Dictionary<int, string> Instructions = new Dictionary<int, string>();
         static void Main(string[] args)
         {
             string asm_name;
@@ -25,6 +26,7 @@ namespace Assembler
 
             Get_All_Lines(asm_name);
             Add_Predefiend_Symbols();
+            Add_Instructions_and_Label_Symbols();
             Console.ReadLine();
         }
 
@@ -37,7 +39,29 @@ namespace Assembler
             }
             asm_file.Close();
         }
+        static void Add_Instructions_and_Label_Symbols()
+        {
+            int count = 0;
+            foreach (var item in Lines)
+            {
+                if (!(item == ""))
+                {
+                    if (!item.StartsWith("//"))
+                    {
+                        string temp = item;
+                        if (item.Contains("//"))
+                        {
+                            temp = item.Substring(0, (item.IndexOf("//"))).Trim();
+                        }
 
+                        if (!temp.StartsWith('('))
+                            Instructions.Add(count++, temp);
+                        else
+                            Symbol_Table.Add(temp.Substring(1, temp.Length - 2), count);
+                    }
+                }
+            }
+        }
         static void Add_Predefiend_Symbols()
         {
             Symbol_Table.Add("R0", 0);
