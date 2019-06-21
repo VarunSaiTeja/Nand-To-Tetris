@@ -7,13 +7,12 @@ namespace Assembler
 {
     class Program
     {
+        static string asm_name;
         static List<string> Lines = new List<string>();
         static Dictionary<string, int> Symbol_Table = new Dictionary<string, int>();
         static Dictionary<int, string> Instructions = new Dictionary<int, string>();
         static void Main(string[] args)
         {
-            string asm_name;
-
             if (args.Length == 0)
             {
                 Console.Write("File name : ");
@@ -24,7 +23,7 @@ namespace Assembler
                 asm_name = args[0];
             }
 
-            Get_All_Lines(asm_name);
+            Get_All_Lines();
             Add_Predefiend_Symbols();
             Add_Instructions_and_Label_Symbols();
             Add_Variable_Symbols();
@@ -32,7 +31,7 @@ namespace Assembler
             Console.ReadLine();
         }
 
-        static void Get_All_Lines(string asm_name)
+        static void Get_All_Lines()
         {
             StreamReader asm_file = new StreamReader(asm_name);
             while (!asm_file.EndOfStream)
