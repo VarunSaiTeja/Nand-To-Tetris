@@ -27,6 +27,7 @@ namespace Assembler
             Get_All_Lines(asm_name);
             Add_Predefiend_Symbols();
             Add_Instructions_and_Label_Symbols();
+            Translate_Symbols();
             Console.ReadLine();
         }
 
@@ -58,6 +59,19 @@ namespace Assembler
                             Instructions.Add(count++, temp);
                         else
                             Symbol_Table.Add(temp.Substring(1, temp.Length - 2), count);
+                    }
+                }
+            }
+        }
+        static void Translate_Symbols()
+        {
+            for (int i = 0; i < Instructions.Count; i++)
+            {
+                if (Instructions[i].StartsWith('@'))
+                {
+                    if (Symbol_Table.ContainsKey(Instructions[i].Substring(1)))
+                    {
+                        Instructions[i] = "@" + Symbol_Table[Instructions[i].Substring(1)];
                     }
                 }
             }
