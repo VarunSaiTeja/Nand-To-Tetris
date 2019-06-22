@@ -209,5 +209,12 @@ namespace Assembler
             else
                 return Dest_to_Binary["null"];
         }
+        public static string Get_Comp(string instruction)
+        {
+            if (instruction.Contains('='))
+                return Comp_to_Binary[instruction.Substring(instruction.IndexOf('=') + 1)];
+            else
+                return Comp_to_Binary[instruction[0].ToString()];
+        }
     }
 }
