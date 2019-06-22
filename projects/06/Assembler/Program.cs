@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -215,6 +215,13 @@ namespace Assembler
                 return Comp_to_Binary[instruction.Substring(instruction.IndexOf('=') + 1)];
             else
                 return Comp_to_Binary[instruction[0].ToString()];
+        }
+        public static string Get_Jump(string instruction)
+        {
+            if(instruction.Contains(';'))
+            return Jump_to_Binary[instruction.Substring(instruction.IndexOf(';')+1)];
+            else
+            return Jump_to_Binary["null"];
         }
     }
 }
