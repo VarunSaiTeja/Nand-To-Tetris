@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -39,13 +39,17 @@ namespace Assembler
                 if (item.Value.StartsWith('@'))
                     Hack_File.WriteLine(Translate_A_Type(item.Value.Substring(1)));
                 else
-                    Hack_File.WriteLine("Binary Converted C Instrucion");
+                    Hack_File.WriteLine(Translate_C_Type(item.Value));
             }
             Hack_File.Close();
         }
         static string Translate_A_Type(string instruction)
         {
             return ("0" + Convert.ToString(Int32.Parse(instruction), 2).PadLeft(15, '0'));
+        }
+        static string Translate_C_Type(string instruction)
+        {
+            return String.Empty;
         }
         static void Get_All_Lines()
         {
