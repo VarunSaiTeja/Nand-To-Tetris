@@ -193,14 +193,14 @@ namespace Assembler
         };
         static Dictionary<string, string> Jump_to_Binary = new Dictionary<string, string>
         {
-            { "null", "0101010" },
-            { "JGT", "0101010" },
-            { "JEQ", "0101010" },
-            { "JGE", "0101010" },
-            { "JLT", "0101010" },
-            { "JNE", "0101010" },
-            { "JLE", "0101010" },
-            { "JMP", "0101010" }
+            { "null", "000" },
+            { "JGT", "001" },
+            { "JEQ", "010" },
+            { "JGE", "011" },
+            { "JLT", "100" },
+            { "JNE", "101" },
+            { "JLE", "110" },
+            { "JMP", "111" }
         };
         public static string Get_Dest(string instruction)
         {
