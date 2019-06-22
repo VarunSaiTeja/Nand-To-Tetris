@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -202,5 +202,12 @@ namespace Assembler
             { "JLE", "0101010" },
             { "JMP", "0101010" }
         };
+        public static string Get_Dest(string instruction)
+        {
+            if (instruction.Contains('='))
+                return Dest_to_Binary[instruction.Substring(0, instruction.IndexOf('='))];
+            else
+                return Dest_to_Binary["null"];
+        }
     }
 }
