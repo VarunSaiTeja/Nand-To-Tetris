@@ -71,6 +71,7 @@ namespace Assembler
                             temp = item.Substring(0, (item.IndexOf("//"))).Trim();
                         }
 
+                        temp = temp.Replace(" ", String.Empty);
                         if (!temp.StartsWith('('))
                             Instructions.Add(count++, temp);
                         else
