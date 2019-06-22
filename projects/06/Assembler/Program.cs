@@ -142,4 +142,11 @@ namespace Assembler
             Symbol_Table.Add("THAT", 4);
         }
     }
+
+    class C_Type_Parser
+    {
+        static Dictionary<string, string> Comp_to_Binary = new Dictionary<string, string>();
+        static Dictionary<string, string> Dest_to_Binary = new Dictionary<string, string>();
+        static Dictionary<string, string> Jump_to_Binary = new Dictionary<string, string>();
+    }
 }
