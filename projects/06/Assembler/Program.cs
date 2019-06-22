@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -18,9 +18,7 @@ namespace Assembler
                 asm_name = Console.ReadLine();
             }
             else
-            {
                 asm_name = args[0];
-            }
 
             Get_All_Lines();
             Add_Predefiend_Symbols();
@@ -49,7 +47,11 @@ namespace Assembler
         }
         static string Translate_C_Type(string instruction)
         {
-            return String.Empty;
+            string binary_instruction = "111";
+            binary_instruction += C_Type_Parser.Get_Comp(instruction);
+            binary_instruction += C_Type_Parser.Get_Dest(instruction);
+            binary_instruction += C_Type_Parser.Get_Jump(instruction);
+            return binary_instruction;
         }
         static void Get_All_Lines()
         {
@@ -218,10 +220,10 @@ namespace Assembler
         }
         public static string Get_Jump(string instruction)
         {
-            if(instruction.Contains(';'))
-            return Jump_to_Binary[instruction.Substring(instruction.IndexOf(';')+1)];
+            if (instruction.Contains(';'))
+                return Jump_to_Binary[instruction.Substring(instruction.IndexOf(';') + 1)];
             else
-            return Jump_to_Binary["null"];
+                return Jump_to_Binary["null"];
         }
     }
 }
