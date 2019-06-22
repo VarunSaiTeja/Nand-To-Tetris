@@ -176,7 +176,17 @@ namespace Assembler
             { "D&M", "1000000" },
             { "D|M", "1010101" }
         };
-        static Dictionary<string, string> Dest_to_Binary = new Dictionary<string, string>();
+        static Dictionary<string, string> Dest_to_Binary = new Dictionary<string, string>
+        {
+            { "null", "000" },
+            { "M", "001" },
+            { "D", "010" },
+            { "MD", "011" },
+            { "A", "100" },
+            { "AM", "101" },
+            { "AD", "110" },
+            { "AMD", "111" }
+        };
         static Dictionary<string, string> Jump_to_Binary = new Dictionary<string, string>();
     }
 }
