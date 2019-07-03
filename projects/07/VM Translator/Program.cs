@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace VM_Translator
 {
@@ -6,7 +6,14 @@ namespace VM_Translator
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            if (args.Length == 0)
+            {
+                Console.Write("File name : ");
+                vm_name = Console.ReadLine();
+            }
+            else
+                vm_name = args[0];
+
             Console.ReadLine();
         }
     }
