@@ -26,6 +26,8 @@ namespace VM_Translator
             {
                 if (pieces[0] == "push")
                     return Push_Command(pieces[1], pieces[2]);
+                else
+                    return Pop_Command(pieces[1], pieces[2]);
             }
 
             return String.Empty;
@@ -71,6 +73,37 @@ namespace VM_Translator
                         "@SP\n" +
                         "M=M+1"
                     );
+            }
+        }
+        static string Pop_Command(string segment, string index)
+        {
+            if (segment == "static")
+            {
+                return (
+                    "@SP\n" +
+                    "AM=M-1\n" +
+                    "D=M\n" +
+                    "@" + Path.GetFileNameWithoutExtension(vm_name) + "." + index + "\n" +
+                    "M=D"
+                );
+            }
+            else
+            {
+                string segment_code = Get_Segment_Code(segment);
+                return (
+                    "@" + segment_code + "\n" +
+                    "D=M\n" +
+                    "@" + index + "\n" +
+                    "D=D+A\n" +
+                    "@R13\n" +
+                    "M=D\n" +
+                    "@SP\n" +
+                    "AM=M-1\n" +
+                    "D=M\n" +
+                    "@R13\n" +
+                    "A=M\n" +
+                    "M=D"
+                );
             }
         }
         static string Get_Segment_Code(string segment)
