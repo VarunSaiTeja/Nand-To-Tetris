@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Collections.Generic;
 
@@ -57,13 +57,41 @@ namespace VM_Translator
                     "M=M+1"
                 );
             }
+            else if (segment == "temp")
+            {
+                return (
+                    "@R5\n" +
+                    "D=A\n" +
+                    "@" + index + "\n" +
+                    "A=D+A\n" +
+                    "D=M\n" +
+                    "@SP\n" +
+                    "A=M\n" +
+                    "M=D\n" +
+                    "@SP\n" +
+                    "M=M+1"
+                    );
+            }
+            else if (segment == "pointer")
+            {
+                string segment_code = (index == "0") ? "THIS" : "THAT";
+                return (
+                    "@" + segment_code + "\n" +
+                    "D=M\n" +
+                    "@SP\n" +
+                    "A=M\n" +
+                    "M=D\n" +
+                    "@SP\n" +
+                    "M=M+1"
+                    );
+            }
             else
             {
                 string segment_code = Get_Segment_Code(segment);
 
                 return (
                         "@" + segment_code + "\n" +
-                        "D=A\n" +
+                        "D=M\n" +
                         "@" + index + "\n" +
                         "A=D+A\n" +
                         "D=M\n" +
