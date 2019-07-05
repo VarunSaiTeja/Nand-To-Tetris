@@ -115,6 +115,39 @@ namespace VM_Translator
                     "M=D"
                 );
             }
+            else if (segment == "temp")
+            {
+                return (
+                    "@R5\n" +
+                    "D=A\n" +
+                    "@" + index + "\n" +
+                    "D=D+A\n" +
+                    "@R13\n" +
+                    "M=D\n" +
+                    "@SP\n" +
+                    "AM=M-1\n" +
+                    "D=M\n" +
+                    "@R13\n" +
+                    "A=M\n" +
+                    "M=D"
+                );
+            }
+            else if (segment == "pointer")
+            {
+                string segment_code = (index == "0") ? "THIS" : "THAT";
+                return (
+                    "@" + segment_code + "\n" +
+                    "D=A\n" +
+                    "@R13\n" +
+                    "M=D\n" +
+                    "@SP\n" +
+                    "AM=M-1\n" +
+                    "D=M\n" +
+                    "@R13\n" +
+                    "A=M\n" +
+                    "M=D"
+                );
+            }
             else
             {
                 string segment_code = Get_Segment_Code(segment);
