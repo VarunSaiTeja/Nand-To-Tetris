@@ -179,10 +179,6 @@ namespace VM_Translator
                     return "THIS";
                 case "that":
                     return "THAT";
-                case "temp":
-                    return "R5";
-                case "pointer":
-                    return "R3";
                 default:
                     return String.Empty;
             }
