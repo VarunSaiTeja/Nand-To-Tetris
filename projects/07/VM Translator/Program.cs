@@ -274,7 +274,7 @@ namespace VM_Translator
         static void Generate_Assembly()
         {
             StreamReader vm_file = new StreamReader(vm_name);
-            StreamWriter asm_file = new StreamWriter(Path.GetFileNameWithoutExtension(vm_name) + ".asm");
+            StreamWriter asm_file = new StreamWriter(vm_name.Substring(0, vm_name.LastIndexOf(".")) + ".asm");
             string temp = null;
             while (!vm_file.EndOfStream)
             {
