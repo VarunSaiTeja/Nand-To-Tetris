@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 using System.Collections.Generic;
 
@@ -7,6 +7,7 @@ namespace VM_Translator
     class Program
     {
         static string vm_name;
+        static int label_counter = 0;
         static void Main(string[] args)
         {
             if (args.Length == 0)
@@ -18,6 +19,7 @@ namespace VM_Translator
                 vm_name = args[0];
 
             Generate_Assembly();
+            Console.WriteLine("Assembly file " + Path.GetFileNameWithoutExtension(vm_name) + ".asm is generated");
             Console.ReadLine();
         }
         static string Translate(string[] pieces)
@@ -29,8 +31,94 @@ namespace VM_Translator
                 else
                     return Pop_Command(pieces[1], pieces[2]);
             }
+            else if (pieces.Length == 1)
+            {
+                return Arithmetic_Logical_Command(pieces[0]);
+            }
 
             return String.Empty;
+        }
+        static string Arithmetic_Logical_Command(string operation)
+        {
+            switch (operation)
+            {
+                case "add":
+                    return (
+                        "@SP\n" +
+                        "AM=M-1\n" +
+                        "D=M\n" +
+                        "A=A-1\n" +
+                        "M=M+D"
+                    );
+                case "sub":
+                    return (
+                        "@SP\n" +
+                        "AM=M-1\n" +
+                        "D=M\n" +
+                        "A=A-1\n" +
+                        "M=M-D"
+                    );
+                case "and":
+                    return (
+                            "@SP\n" +
+                            "AM=M-1\n" +
+                            "D=M\n" +
+                            "A=A-1\n" +
+                            "M=M&D"
+                        );
+                case "or":
+                    return (
+                        "@SP\n" +
+                        "AM=M-1\n" +
+                        "D=M\n" +
+                        "A=A-1\n" +
+                        "M=M|D"
+                    );
+                case "neg":
+                    return (
+                        "@SP\n" +
+                        "A=M-1\n" +
+                        "D=0\n" +
+                        "M=D-M"
+                    );
+                case "not":
+                    return (
+                        "@SP\n" +
+                        "A=M-1\n" +
+                        "M=!M"
+                    );
+                case "eq":
+                    return Jump_Command("JEQ");
+                case "lt":
+                    return Jump_Command("JLT");
+                case "gt":
+                    return Jump_Command("JGT");
+                default:
+                    return String.Empty;
+            }
+        }
+        static string Jump_Command(string condition)
+        {
+            label_counter++;
+            return (
+                "@SP\n" +
+                "AM=M-1\n" +
+                "D=M\n" +
+                "A=A-1\n" +
+                "D=M-D\n" +
+                "@TrueResult" + label_counter + "\n" +
+                "D;" + condition + "\n" +
+                "@SP\n" +
+                "A=M-1\n" +
+                "M=0\n" +
+                "@Continue" + label_counter + "\n" +
+                "0;JMP\n" +
+                "(TrueResult" + label_counter + ")\n" +
+                "@SP\n" +
+                "A=M-1\n" +
+                "M=-1\n" +
+                "(Continue" + label_counter + ")"
+            );
         }
         static string Push_Command(string segment, string index)
         {
