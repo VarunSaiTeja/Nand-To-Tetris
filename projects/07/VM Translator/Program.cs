@@ -48,7 +48,7 @@ namespace VM_Translator
                         "AM=M-1\n" +
                         "D=M\n" +
                         "A=A-1\n" +
-                        "M=M+D"
+                        "M=D+M"
                     );
                 case "sub":
                     return (
