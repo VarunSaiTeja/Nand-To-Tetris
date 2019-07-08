@@ -10,6 +10,11 @@ namespace Code_Converter
     /// </summary>
     public partial class Assembler : Page
     {
+        static bool file_selected = false;
+        static OpenFileDialog fileDialog = new OpenFileDialog
+        {
+            Filter = "Assembly|*.asm"
+        };
         public Assembler()
         {
             InitializeComponent();
@@ -17,15 +22,10 @@ namespace Code_Converter
 
         private void Load_File(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog fileDialog = new OpenFileDialog
-            {
-                Filter = "Assembly|*.asm"
-            };
-
             if ((bool)fileDialog.ShowDialog())
             {
                 AsmPath.Text = fileDialog.FileName;
-                Translator.Assembler.ConvertFile(fileDialog.FileName);
+                file_selected = true;
                 MySnackbar.IsActive = true;
                 Thread thread = new Thread(HideSnackBar);
                 thread.Start();
@@ -34,21 +34,42 @@ namespace Code_Converter
 
         private void HideSnackBar()
         {
-            Thread.Sleep(3000);
-            this.Dispatcher.Invoke(() =>
+            try
             {
-                MySnackbar.IsActive = false;
-            });
+                Thread.Sleep(3000);
+                this.Dispatcher.Invoke(() =>
+                {
+                    MySnackbar.IsActive = false;
+                });
+            }
+            catch (System.Exception)
+            { }
         }
 
         private void ConvertNow(object sender, RoutedEventArgs e)
         {
-            DialogHost.IsOpen = true;
+            if (file_selected)
+            {
+                Translator.Assembler.ConvertFile(fileDialog.FileName);
+                DialogHost.IsOpen = true;
+            }
         }
 
         private void HideDialog(object sender, RoutedEventArgs e)
         {
             DialogHost.IsOpen = false;
+        }
+
+        private void UndoFile(object sender, RoutedEventArgs e)
+        {
+            AsmPath.Clear();
+            file_selected = false;
+            MySnackbar.IsActive = false;
+        }
+
+        private void Go_Back(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Main());
         }
     }
 }

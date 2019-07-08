@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-d:\Coding\Nand To Tetris\Code Converter\obj\Debug\
+D:\Coding\Nand To Tetris\Code Converter\obj\Debug\
 Code_Converter
 none
 false
 DEBUG;TRACE
-d:\Coding\Nand To Tetris\Code Converter\App.xaml
-3-1061606450
+D:\Coding\Nand To Tetris\Code Converter\App.xaml
+4-712468369
 
-8-692035839
-16-1752222159
-Assembler.xaml;Main.xaml;MainWindow.xaml;
+8-315183106
+16-1672570856
+Assembler.xaml;Main.xaml;MainWindow.xaml;VM Translator.xaml;
 
-True
+False
 

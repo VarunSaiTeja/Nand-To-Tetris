@@ -15,12 +15,12 @@ namespace Code_Converter
 
         private void AssemblyConverter(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new Assembler());
+            NavigationService.Navigate(new Assembler());
         }
 
         private void VMConverter(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new VM_Translator());
+            NavigationService.Navigate(new VM_Translator());
         }
     }
 }

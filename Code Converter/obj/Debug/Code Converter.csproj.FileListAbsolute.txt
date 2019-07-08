@@ -26,3 +26,5 @@ D:\Coding\Nand To Tetris\Code Converter\obj\Debug\Code Converter.exe
 D:\Coding\Nand To Tetris\Code Converter\obj\Debug\Code Converter.pdb
 D:\Coding\Nand To Tetris\Code Converter\bin\Debug\Translator.dll
 D:\Coding\Nand To Tetris\Code Converter\bin\Debug\Translator.pdb
+D:\Coding\Nand To Tetris\Code Converter\obj\Debug\VM Translator.g.cs
+D:\Coding\Nand To Tetris\Code Converter\obj\Debug\VM Translator.baml
