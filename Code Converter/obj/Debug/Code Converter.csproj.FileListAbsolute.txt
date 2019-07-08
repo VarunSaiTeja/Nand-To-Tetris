@@ -1,0 +1,28 @@
+D:\Coding\Nand To Tetris\Code Converter\bin\Debug\Code Converter.exe.config
+D:\Coding\Nand To Tetris\Code Converter\bin\Debug\Code Converter.exe
+D:\Coding\Nand To Tetris\Code Converter\bin\Debug\Code Converter.pdb
+D:\Coding\Nand To Tetris\Code Converter\bin\Debug\MaterialDesignColors.dll
+D:\Coding\Nand To Tetris\Code Converter\bin\Debug\MaterialDesignThemes.Wpf.dll
+D:\Coding\Nand To Tetris\Code Converter\bin\Debug\MaterialDesignColors.pdb
+D:\Coding\Nand To Tetris\Code Converter\bin\Debug\MaterialDesignThemes.Wpf.pdb
+D:\Coding\Nand To Tetris\Code Converter\bin\Debug\MaterialDesignThemes.Wpf.xml
+D:\Coding\Nand To Tetris\Code Converter\obj\Debug\Code Converter.csprojAssemblyReference.cache
+D:\Coding\Nand To Tetris\Code Converter\obj\Debug\Assembler.g.cs
+D:\Coding\Nand To Tetris\Code Converter\obj\Debug\Main.g.cs
+D:\Coding\Nand To Tetris\Code Converter\obj\Debug\MainWindow.g.cs
+D:\Coding\Nand To Tetris\Code Converter\obj\Debug\App.g.cs
+D:\Coding\Nand To Tetris\Code Converter\obj\Debug\Code Converter_MarkupCompile.cache
+D:\Coding\Nand To Tetris\Code Converter\obj\Debug\Code Converter_MarkupCompile.lref
+D:\Coding\Nand To Tetris\Code Converter\obj\Debug\App.baml
+D:\Coding\Nand To Tetris\Code Converter\obj\Debug\Assembler.baml
+D:\Coding\Nand To Tetris\Code Converter\obj\Debug\Main.baml
+D:\Coding\Nand To Tetris\Code Converter\obj\Debug\MainWindow.baml
+D:\Coding\Nand To Tetris\Code Converter\obj\Debug\Code Converter.g.resources
+D:\Coding\Nand To Tetris\Code Converter\obj\Debug\Code_Converter.Properties.Resources.resources
+D:\Coding\Nand To Tetris\Code Converter\obj\Debug\Code Converter.csproj.GenerateResource.cache
+D:\Coding\Nand To Tetris\Code Converter\obj\Debug\Code Converter.csproj.CoreCompileInputs.cache
+D:\Coding\Nand To Tetris\Code Converter\obj\Debug\Code Converter.csproj.CopyComplete
+D:\Coding\Nand To Tetris\Code Converter\obj\Debug\Code Converter.exe
+D:\Coding\Nand To Tetris\Code Converter\obj\Debug\Code Converter.pdb
+D:\Coding\Nand To Tetris\Code Converter\bin\Debug\Translator.dll
+D:\Coding\Nand To Tetris\Code Converter\bin\Debug\Translator.pdb

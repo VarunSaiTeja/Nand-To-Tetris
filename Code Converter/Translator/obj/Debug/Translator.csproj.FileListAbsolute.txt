@@ -1,0 +1,6 @@
+D:\Coding\Nand To Tetris\Code Converter\Translator\obj\Debug\Translator.csprojAssemblyReference.cache
+D:\Coding\Nand To Tetris\Code Converter\Translator\obj\Debug\Translator.csproj.CoreCompileInputs.cache
+D:\Coding\Nand To Tetris\Code Converter\Translator\bin\Debug\Translator.dll
+D:\Coding\Nand To Tetris\Code Converter\Translator\bin\Debug\Translator.pdb
+D:\Coding\Nand To Tetris\Code Converter\Translator\obj\Debug\Translator.dll
+D:\Coding\Nand To Tetris\Code Converter\Translator\obj\Debug\Translator.pdb
