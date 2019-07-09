@@ -21,6 +21,9 @@ namespace Translator
             Add_Variable_Symbols();
             Translate_Symbols();
             Convert_to_Binary();
+            Lines.Clear();
+            Symbol_Table.Clear();
+            Instructions.Clear();
         }
         static void Convert_to_Binary()
         {

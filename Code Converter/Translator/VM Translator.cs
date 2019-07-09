@@ -12,6 +12,7 @@ namespace Translator
             vm_name = arg;
 
             Generate_Assembly();
+            label_counter = 0;
         }
         static string Translate(string[] pieces)
         {
@@ -55,7 +56,7 @@ namespace Translator
                             "AM=M-1\n" +
                             "D=M\n" +
                             "A=A-1\n" +
-                            "M=M&D"
+                            "M=D&M"
                         );
                 case "or":
                     return (
@@ -63,7 +64,7 @@ namespace Translator
                         "AM=M-1\n" +
                         "D=M\n" +
                         "A=A-1\n" +
-                        "M=M|D"
+                        "M=D|M"
                     );
                 case "neg":
                     return (
