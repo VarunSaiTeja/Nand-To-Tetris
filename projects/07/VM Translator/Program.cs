@@ -64,7 +64,7 @@ namespace VM_Translator
                             "AM=M-1\n" +
                             "D=M\n" +
                             "A=A-1\n" +
-                            "M=M&D"
+                            "M=D&M"
                         );
                 case "or":
                     return (
@@ -72,7 +72,7 @@ namespace VM_Translator
                         "AM=M-1\n" +
                         "D=M\n" +
                         "A=A-1\n" +
-                        "M=M|D"
+                        "M=D|M"
                     );
                 case "neg":
                     return (
@@ -274,7 +274,7 @@ namespace VM_Translator
         static void Generate_Assembly()
         {
             StreamReader vm_file = new StreamReader(vm_name);
-            StreamWriter asm_file = new StreamWriter(Path.ChangeExtension(vm_name,"asm"));
+            StreamWriter asm_file = new StreamWriter(Path.ChangeExtension(vm_name, "asm"));
             string temp = null;
             while (!vm_file.EndOfStream)
             {
