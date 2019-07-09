@@ -172,7 +172,7 @@ M=M+1
 AM=M-1
 D=M
 A=A-1
-M=M+D
+M=D+M
 //push argument 1
 @ARG
 D=M
@@ -217,7 +217,7 @@ M=M+1
 AM=M-1
 D=M
 A=A-1
-M=M+D
+M=D+M
 //sub
 @SP
 AM=M-1
@@ -240,4 +240,4 @@ M=M+1
 AM=M-1
 D=M
 A=A-1
-M=M+D
+M=D+M
