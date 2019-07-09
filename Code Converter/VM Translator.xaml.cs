@@ -50,6 +50,10 @@ namespace Code_Converter
         {
             if (file_selected)
             {
+                if (MySnackbar.IsActive)
+                {
+                    MySnackbar.IsActive = false;
+                }
                 Translator.VM_Translator.ConvertFile(fileDialog.FileName);
                 DialogHost.IsOpen = true;
             }
