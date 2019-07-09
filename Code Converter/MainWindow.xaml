@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Code_Converter"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -12,10 +13,46 @@
         TextOptions.TextRenderingMode="Auto"        
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="My Computer" Height="310" Width="510"
+        Title="My Computer" Height="310" Width="700"
         ResizeMode="NoResize">
-    <Frame x:Name="MyFrame" NavigationUIVisibility="Hidden">
+    <Grid>
+        <StackPanel HorizontalAlignment="Right" Width="200">
+            <materialDesign:Card Width="200">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="140" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Image Source="Images/Profile.jpg" Stretch="Uniform" Margin="0,10,0,0" />
+                    <Button Grid.Row="0" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                            HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 16 -20" Click="Donate">
+                        <materialDesign:PackIcon Kind="Donate"/>
+                    </Button>
+                    <StackPanel Grid.Row="1" Margin="8 24 8 0">
+                        <TextBlock Text="Code Converter" FontWeight="Bold" Margin="10,0,0,0"/>
+                        <TextBlock Style="{StaticResource MaterialDesignBody2TextBlock}"
+                                   TextWrapping="Wrap" VerticalAlignment="Center" Margin="10,5,0,0">
+                            Hey Look! This is Varun. Thanks for using my Code Converter.
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Right" Grid.Row="2" Orientation="Horizontal" Margin="0,5,16,15">
+                        <Button  Style="{StaticResource MaterialDesignToolButton}" materialDesign:RippleAssist.IsCentered="True"
+                                 Width="30"
+                                 Padding="2 0 2 0" Click="GitHub">
+                            <materialDesign:PackIcon Kind="GithubCircle" />
+                        </Button>
+                        <Button  Style="{StaticResource MaterialDesignToolButton}" materialDesign:RippleAssist.IsCentered="True"
+                                 Width="30"
+                                 Padding="2 0 2 0" Click="YouTube">
+                            <materialDesign:PackIcon Kind="YoutubePlay" />
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </materialDesign:Card>
+        </StackPanel>
+        <Frame x:Name="MyFrame" NavigationUIVisibility="Hidden" Width="500" HorizontalAlignment="Left">
 
-    </Frame>
-
+        </Frame>
+    </Grid>
 </Window>
