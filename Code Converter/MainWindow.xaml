@@ -13,9 +13,15 @@
         TextOptions.TextRenderingMode="Auto"        
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="My Computer" Height="310" Width="700"
+        Title="Code Converter by Varun" Height="310" Width="700"
         ResizeMode="NoResize">
     <Grid>
+        <Border BorderThickness="2" Width="700" Height="2" BorderBrush="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Panel.ZIndex="1"/>
+        <Border BorderThickness="2" Width="700" Height="2" BorderBrush="Black" VerticalAlignment="Bottom" HorizontalAlignment="Left" Panel.ZIndex="1"/>
+        <Border BorderThickness="2" Width="2" BorderBrush="Black" HorizontalAlignment="Left" Panel.ZIndex="1"/>
+        <Border BorderThickness="2" Width="2" BorderBrush="Black" HorizontalAlignment="Right" Panel.ZIndex="1"/>
+        <Border BorderThickness="2" Width="2" BorderBrush="Black" Margin="487,0,0,0" HorizontalAlignment="Left" Panel.ZIndex="1"/>
+
         <StackPanel HorizontalAlignment="Right" Width="200">
             <materialDesign:Card Width="200">
                 <Grid>
