@@ -36,10 +36,10 @@
                         <materialDesign:PackIcon Kind="Donate"/>
                     </Button>
                     <StackPanel Grid.Row="1" Margin="8 24 8 0">
-                        <TextBlock Text="Code Converter" FontWeight="Bold" Margin="10,0,0,0"/>
+                        <TextBlock Text="Varun Teja" FontWeight="Bold" FontSize="15" HorizontalAlignment="Center"/>
                         <TextBlock Style="{StaticResource MaterialDesignBody2TextBlock}"
                                    TextWrapping="Wrap" VerticalAlignment="Center" Margin="10,5,0,0">
-                            Hey Look! This is Varun. Thanks for using my Code Converter.
+                            Thanks for using my Code Converter. You can donate me by hitting gift icon.
                         </TextBlock>
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Right" Grid.Row="2" Orientation="Horizontal" Margin="0,5,16,15">

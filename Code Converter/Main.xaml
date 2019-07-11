@@ -9,7 +9,7 @@
       Title="Main">
 
     <Grid Background="White">
-        <TextBlock Text="Select Converter" HorizontalAlignment="Center"
+        <TextBlock Text="Code Converter" HorizontalAlignment="Center"
     Style="{StaticResource MaterialDesignDisplay1TextBlock}"/>
         <Button Content="Asssembler" Width="150" VerticalAlignment="Top" Margin="0,110,0,0" Click="AssemblyConverter"/>
         <Button Content="VM Translator" Width="150" VerticalAlignment="Bottom" Margin="0,0,0,70" Click="VMConverter"/>
