@@ -1,0 +1,11 @@
+D:\Coding\Nand To Tetris\projects\08\VM Translator\bin\Debug\netcoreapp2.1\VM Translator.deps.json
+D:\Coding\Nand To Tetris\projects\08\VM Translator\bin\Debug\netcoreapp2.1\VM Translator.runtimeconfig.json
+D:\Coding\Nand To Tetris\projects\08\VM Translator\bin\Debug\netcoreapp2.1\VM Translator.runtimeconfig.dev.json
+D:\Coding\Nand To Tetris\projects\08\VM Translator\bin\Debug\netcoreapp2.1\VM Translator.dll
+D:\Coding\Nand To Tetris\projects\08\VM Translator\bin\Debug\netcoreapp2.1\VM Translator.pdb
+D:\Coding\Nand To Tetris\projects\08\VM Translator\obj\Debug\netcoreapp2.1\VM Translator.csprojAssemblyReference.cache
+D:\Coding\Nand To Tetris\projects\08\VM Translator\obj\Debug\netcoreapp2.1\VM Translator.csproj.CoreCompileInputs.cache
+D:\Coding\Nand To Tetris\projects\08\VM Translator\obj\Debug\netcoreapp2.1\VM Translator.AssemblyInfoInputs.cache
+D:\Coding\Nand To Tetris\projects\08\VM Translator\obj\Debug\netcoreapp2.1\VM Translator.AssemblyInfo.cs
+D:\Coding\Nand To Tetris\projects\08\VM Translator\obj\Debug\netcoreapp2.1\VM Translator.dll
+D:\Coding\Nand To Tetris\projects\08\VM Translator\obj\Debug\netcoreapp2.1\VM Translator.pdb
