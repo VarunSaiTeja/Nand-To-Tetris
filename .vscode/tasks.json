@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/projects/07/VM Translator/VM Translator.csproj"
+                "${workspaceFolder}/projects/08/VM Translator/VM Translator.csproj"
             ],
             "problemMatcher": "$tsc"
         },
@@ -17,7 +17,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/projects/07/VM Translator/VM Translator.csproj"
+                "${workspaceFolder}/projects/08/VM Translator/VM Translator.csproj"
             ],
             "problemMatcher": "$tsc"
         },
