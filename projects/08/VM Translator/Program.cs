@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 using System.Collections.Generic;
 
@@ -31,12 +31,30 @@ namespace VM_Translator
                 else
                     return Pop_Command(pieces[1], pieces[2]);
             }
+            else if (pieces.Length == 2)
+            {
+                if (pieces[0] == "label")
+                    return '(' + pieces[1] + ')';
+                else if (pieces[0] == "if-goto")
+                    return If_goto_Command(pieces[1]);
+            }
             else if (pieces.Length == 1)
             {
                 return Arithmetic_Logical_Command(pieces[0]);
             }
 
             return String.Empty;
+        }
+
+        static string If_goto_Command(string label)
+        {
+            return (
+                "@SP\n" +
+                "AM=M-1\n" +
+                "D=M\n" +
+                '@' + label + '\n' +
+                "D;JNE"
+            );
         }
         static string Arithmetic_Logical_Command(string operation)
         {
