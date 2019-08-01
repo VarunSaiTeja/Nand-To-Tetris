@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Collections.Generic;
 
@@ -283,6 +283,11 @@ namespace VM_Translator
                 {
                     if (!(temp.StartsWith("//")))
                     {
+                        if (temp.Contains("//"))
+                        {
+                            temp = temp.Substring(0, temp.IndexOf("//"));
+                            temp = temp.Trim();
+                        }
                         asm_file.WriteLine("//" + temp);
                         asm_file.WriteLine(Translate(temp.Split(" ")));
                     }
