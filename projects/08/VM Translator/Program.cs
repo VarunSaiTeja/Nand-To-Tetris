@@ -37,6 +37,8 @@ namespace VM_Translator
                     return '(' + pieces[1] + ')';
                 else if (pieces[0] == "if-goto")
                     return If_goto_Command(pieces[1]);
+                else if (pieces[0] == "goto")
+                    return Goto_Command(pieces[1]);
             }
             else if (pieces.Length == 1)
             {
@@ -46,6 +48,13 @@ namespace VM_Translator
             return String.Empty;
         }
 
+        static string Goto_Command(string label)
+        {
+            return (
+                "@" + label + '\n' +
+                "0;JMP"
+            );
+        }
         static string If_goto_Command(string label)
         {
             return (
