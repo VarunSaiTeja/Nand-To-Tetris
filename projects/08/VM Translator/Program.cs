@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Collections.Generic;
 
@@ -7,7 +7,7 @@ namespace VM_Translator
     class Program
     {
         static string vm_name;
-        static int label_counter = 0;
+        static int label_counter = 0, return_counter = 0;
         static void Main(string[] args)
         {
             if (args.Length == 0)
@@ -28,8 +28,14 @@ namespace VM_Translator
             {
                 if (pieces[0] == "push")
                     return Push_Command(pieces[1], pieces[2]);
-                else
+                else if (pieces[0] == "pop")
                     return Pop_Command(pieces[1], pieces[2]);
+                else if (pieces[0] == "function")
+                    return Function_Command(pieces[1], Convert.ToInt16(pieces[2]));
+                else if (pieces[0] == "call")
+                {
+                    return Call_Command(pieces[1], Convert.ToInt16(pieces[2]));
+                }
             }
             else if (pieces.Length == 2)
             {
@@ -42,12 +48,137 @@ namespace VM_Translator
             }
             else if (pieces.Length == 1)
             {
-                return Arithmetic_Logical_Command(pieces[0]);
+                if (pieces[0] == "return")
+                    return Return_Command();
+                else
+                    return Arithmetic_Logical_Command(pieces[0]);
             }
 
             return String.Empty;
         }
-
+        static string Call_Command(string functionName, int argsCount)
+        {
+            string return_label = "Return_Label_" + (++return_counter).ToString();
+            return (
+                "@" + return_label + '\n' +
+                "D=A\n" +
+                "@SP\n" +
+                "A=M\n" +
+                "M=D\n" +
+                "@SP\n" +
+                "M=M+1\n" +
+                "@LCL\n" +
+                "D=M\n" +
+                "@SP\n" +
+                "A=M\n" +
+                "M=D\n" +
+                "@SP\n" +
+                "M=M+1\n" +
+                "@ARG\n" +
+                "D=M\n" +
+                "@SP\n" +
+                "A=M\n" +
+                "M=D\n" +
+                "@SP\n" +
+                "M=M+1\n" +
+                "@THIS\n" +
+                "D=M\n" +
+                "@SP\n" +
+                "A=M\n" +
+                "M=D\n" +
+                "@SP\n" +
+                "M=M+1\n" +
+                "@THAT\n" +
+                "D=M\n" +
+                "@SP\n" +
+                "A=M\n" +
+                "M=D\n" +
+                "@SP\n" +
+                "M=M+1\n" +
+                "@SP\n" +
+                "D=M\n" +
+                "@" + argsCount + '\n' +
+                "D=D-A\n" +
+                "@5\n" +
+                "D=D-A\n" +
+                "@ARG\n" +
+                "M=D\n" +
+                "@SP\n" +
+                "D=M\n" +
+                "@LCL\n" +
+                "M=D\n" +
+                "@" + functionName + '\n' +
+                "0;JMP\n" +
+                '(' + return_label + ')'
+            );
+        }
+        static string Function_Command(string functionName, int variableCount)
+        {
+            string output = '(' + functionName + ')';
+            for (int i = 0; i < variableCount; i++)
+            {
+                output += (
+                    "\n" +
+                    "@0\n" +
+                    "D=A\n" +
+                    "@SP\n" +
+                    "A=M\n" +
+                    "M=D\n" +
+                    "@SP\n" +
+                    "M=M+1"
+                );
+            }
+            return output;
+        }
+        static string Return_Command()
+        {
+            return (
+                "@LCL\n" +
+                "D=M\n" +
+                "@R13\n" +
+                "M=D\n" +
+                "@5\n" +
+                "A=D-A\n" +
+                "D=M\n" +
+                "@R14\n" +
+                "M=D\n" +
+                "@SP\n" +
+                "M=M-1\n" +
+                "@SP\n" +
+                "A=M\n" +
+                "D=M\n" +
+                "@ARG\n" +
+                "A=M\n" +
+                "M=D\n" +
+                "@ARG\n" +
+                "D=M\n" +
+                "@R0\n" +
+                "M=D+1\n" +
+                "@R13\n" +
+                "AMD=M-1\n" +
+                "D=M\n" +
+                "@THAT\n" +
+                "M=D\n" +
+                "@R13\n" +
+                "AMD=M-1\n" +
+                "D=M\n" +
+                "@THIS\n" +
+                "M=D\n" +
+                "@R13\n" +
+                "AMD=M-1\n" +
+                "D=M\n" +
+                "@ARG\n" +
+                "M=D\n" +
+                "@R13\n" +
+                "AMD=M-1\n" +
+                "D=M\n" +
+                "@LCL\n" +
+                "M=D\n" +
+                "@R14\n" +
+                "A=M\n" +
+                "0;JMP"
+            );
+        }
         static string Goto_Command(string label)
         {
             return (
