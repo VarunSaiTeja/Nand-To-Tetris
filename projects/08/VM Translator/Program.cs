@@ -31,7 +31,7 @@ namespace VM_Translator
                     vm_name = item.ToString();
                     Generate_Assembly();
                 }
-                StreamWriter writer = new StreamWriter(vm_path + "\\" + new DirectoryInfo(vm_path).Name + ".asm");
+                StreamWriter writer = new StreamWriter(vm_path + "/" + new DirectoryInfo(vm_path).Name + ".asm");
                 writer.Write(init());
                 foreach (var item in new DirectoryInfo(vm_path).GetFiles("*.asm"))
                 {
