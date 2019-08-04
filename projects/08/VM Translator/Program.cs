@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 using System.Collections.Generic;
 
@@ -18,8 +18,35 @@ namespace VM_Translator
             else
                 vm_name = args[0];
 
-            Generate_Assembly();
-            Console.WriteLine("Assembly file " + Path.GetFileNameWithoutExtension(vm_name) + ".asm is generated");
+            if (vm_name.Contains(".vm"))
+            {
+                Generate_Assembly();
+                Console.WriteLine("Assembly file " + Path.GetFileNameWithoutExtension(vm_name) + ".asm is generated");
+            }
+            else
+            {
+                string vm_path = vm_name;
+                foreach (var item in new DirectoryInfo(vm_name).GetFiles("*.vm"))
+                {
+                    vm_name = item.ToString();
+                    Generate_Assembly();
+                }
+                StreamWriter writer = new StreamWriter(vm_path + "\\" + new DirectoryInfo(vm_path).Name + ".asm");
+                foreach (var item in new DirectoryInfo(vm_path).GetFiles("*.asm"))
+                {
+                    if (item.Name == new DirectoryInfo(vm_path).Name + ".asm")
+                        continue;
+                    StreamReader reader = new StreamReader(item.FullName);
+                    while (!reader.EndOfStream)
+                    {
+                        writer.WriteLine(reader.ReadLine());
+                    }
+                    reader.Close();
+                }
+                writer.Close();
+                Console.WriteLine(new DirectoryInfo(vm_path).Name);
+            }
+            Console.WriteLine("Assembly File Generated");
             Console.ReadLine();
         }
         static string Translate(string[] pieces)
