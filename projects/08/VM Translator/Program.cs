@@ -32,6 +32,7 @@ namespace VM_Translator
                     Generate_Assembly();
                 }
                 StreamWriter writer = new StreamWriter(vm_path + "\\" + new DirectoryInfo(vm_path).Name + ".asm");
+                writer.Write(init());
                 foreach (var item in new DirectoryInfo(vm_path).GetFiles("*.asm"))
                 {
                     if (item.Name == new DirectoryInfo(vm_path).Name + ".asm")
@@ -82,6 +83,16 @@ namespace VM_Translator
             }
 
             return String.Empty;
+        }
+        static string init()
+        {
+            return (
+                "@256\n" +
+                "D=A\n" +
+                "@SP\n" +
+                "M=D\n" +
+                Call_Command("Sys.init", 0)
+            );
         }
         static string Call_Command(string functionName, int argsCount)
         {
