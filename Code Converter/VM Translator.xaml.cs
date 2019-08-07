@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms;
 
 namespace Code_Converter
 {
@@ -11,10 +12,7 @@ namespace Code_Converter
     public partial class VM_Translator : Page
     {
         static bool file_selected = false;
-        static OpenFileDialog fileDialog = new OpenFileDialog
-        {
-            Filter = "Virtual Machine|*.vm"
-        };
+        static FolderBrowserDialog folderDialog = new FolderBrowserDialog();
         public VM_Translator()
         {
             InitializeComponent();
@@ -22,9 +20,10 @@ namespace Code_Converter
 
         private void Load_File(object sender, RoutedEventArgs e)
         {
-            if ((bool)fileDialog.ShowDialog())
+            DialogResult folderSelected = folderDialog.ShowDialog();
+            if (folderSelected==DialogResult.OK)
             {
-                VMPath.Text = fileDialog.FileName;
+                VMPath.Text = folderDialog.SelectedPath;
                 file_selected = true;
                 MySnackbar.IsActive = true;
                 Thread thread = new Thread(HideSnackBar);
@@ -54,7 +53,7 @@ namespace Code_Converter
                 {
                     MySnackbar.IsActive = false;
                 }
-                Translator.VM_Translator.ConvertFile(fileDialog.FileName);
+                Translator.VM_Translator.ConvertFile(folderDialog.SelectedPath);
                 DialogHost.IsOpen = true;
             }
         }

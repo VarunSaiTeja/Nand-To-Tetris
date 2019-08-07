@@ -5,14 +5,38 @@ namespace Translator
 {
     public class VM_Translator
     {
-        static string vm_name;
-        static int label_counter = 0;
+        static string vm_name,vm_folder;
+        static int label_counter = 0, return_counter = 0;
         public static void ConvertFile(string arg)
         {
-            vm_name = arg;
+            vm_folder = arg;
 
-            Generate_Assembly();
-            label_counter = 0;
+            if (vm_folder.Contains(".vm"))
+            {
+                Generate_Assembly();
+            }
+            else
+            {
+                foreach (var item in new DirectoryInfo(vm_folder).GetFiles("*.vm"))
+                {
+                    vm_name = vm_folder + '\\' + item.ToString();
+                    Generate_Assembly();
+                }
+                StreamWriter writer = new StreamWriter(vm_folder + "/" + new DirectoryInfo(vm_folder).Name + ".asm");
+                writer.Write(Init());
+                foreach (var item in new DirectoryInfo(vm_folder).GetFiles("*.asm"))
+                {
+                    if (item.Name == new DirectoryInfo(vm_folder).Name + ".asm")
+                        continue;
+                    StreamReader reader = new StreamReader(item.FullName);
+                    while (!reader.EndOfStream)
+                    {
+                        writer.WriteLine(reader.ReadLine());
+                    }
+                    reader.Close();
+                }
+                writer.Close();
+            }
         }
         static string Translate(string[] pieces)
         {
@@ -20,15 +44,183 @@ namespace Translator
             {
                 if (pieces[0] == "push")
                     return Push_Command(pieces[1], pieces[2]);
-                else
+                else if (pieces[0] == "pop")
                     return Pop_Command(pieces[1], pieces[2]);
+                else if (pieces[0] == "function")
+                    return Function_Command(pieces[1], Convert.ToInt16(pieces[2]));
+                else if (pieces[0] == "call")
+                {
+                    return Call_Command(pieces[1], Convert.ToInt16(pieces[2]));
+                }
+            }
+            else if (pieces.Length == 2)
+            {
+                if (pieces[0] == "label")
+                    return '(' + pieces[1] + ')';
+                else if (pieces[0] == "if-goto")
+                    return If_goto_Command(pieces[1]);
+                else if (pieces[0] == "goto")
+                    return Goto_Command(pieces[1]);
             }
             else if (pieces.Length == 1)
             {
-                return Arithmetic_Logical_Command(pieces[0]);
+                if (pieces[0] == "return")
+                    return Return_Command();
+                else
+                    return Arithmetic_Logical_Command(pieces[0]);
             }
 
             return String.Empty;
+        }
+        static string Init()
+        {
+            return (
+                "@256\n" +
+                "D=A\n" +
+                "@SP\n" +
+                "M=D\n" +
+                Call_Command("Sys.init", 0)
+            );
+        }
+        static string Call_Command(string functionName, int argsCount)
+        {
+            string return_label = "Return_Label_" + (++return_counter).ToString();
+            return (
+                "@" + return_label + '\n' +
+                "D=A\n" +
+                "@SP\n" +
+                "A=M\n" +
+                "M=D\n" +
+                "@SP\n" +
+                "M=M+1\n" +
+                "@LCL\n" +
+                "D=M\n" +
+                "@SP\n" +
+                "A=M\n" +
+                "M=D\n" +
+                "@SP\n" +
+                "M=M+1\n" +
+                "@ARG\n" +
+                "D=M\n" +
+                "@SP\n" +
+                "A=M\n" +
+                "M=D\n" +
+                "@SP\n" +
+                "M=M+1\n" +
+                "@THIS\n" +
+                "D=M\n" +
+                "@SP\n" +
+                "A=M\n" +
+                "M=D\n" +
+                "@SP\n" +
+                "M=M+1\n" +
+                "@THAT\n" +
+                "D=M\n" +
+                "@SP\n" +
+                "A=M\n" +
+                "M=D\n" +
+                "@SP\n" +
+                "M=M+1\n" +
+                "@SP\n" +
+                "D=M\n" +
+                "@" + argsCount + '\n' +
+                "D=D-A\n" +
+                "@5\n" +
+                "D=D-A\n" +
+                "@ARG\n" +
+                "M=D\n" +
+                "@SP\n" +
+                "D=M\n" +
+                "@LCL\n" +
+                "M=D\n" +
+                "@" + functionName + '\n' +
+                "0;JMP\n" +
+                '(' + return_label + ')'
+            );
+        }
+        static string Function_Command(string functionName, int variableCount)
+        {
+            string output = '(' + functionName + ')';
+            for (int i = 0; i < variableCount; i++)
+            {
+                output += (
+                    "\n" +
+                    "@0\n" +
+                    "D=A\n" +
+                    "@SP\n" +
+                    "A=M\n" +
+                    "M=D\n" +
+                    "@SP\n" +
+                    "M=M+1"
+                );
+            }
+            return output;
+        }
+        static string Return_Command()
+        {
+            return (
+                "@LCL\n" +
+                "D=M\n" +
+                "@R13\n" +
+                "M=D\n" +
+                "@5\n" +
+                "A=D-A\n" +
+                "D=M\n" +
+                "@R14\n" +
+                "M=D\n" +
+                "@SP\n" +
+                "M=M-1\n" +
+                "@SP\n" +
+                "A=M\n" +
+                "D=M\n" +
+                "@ARG\n" +
+                "A=M\n" +
+                "M=D\n" +
+                "@ARG\n" +
+                "D=M\n" +
+                "@R0\n" +
+                "M=D+1\n" +
+                "@R13\n" +
+                "AMD=M-1\n" +
+                "D=M\n" +
+                "@THAT\n" +
+                "M=D\n" +
+                "@R13\n" +
+                "AMD=M-1\n" +
+                "D=M\n" +
+                "@THIS\n" +
+                "M=D\n" +
+                "@R13\n" +
+                "AMD=M-1\n" +
+                "D=M\n" +
+                "@ARG\n" +
+                "M=D\n" +
+                "@R13\n" +
+                "AMD=M-1\n" +
+                "D=M\n" +
+                "@LCL\n" +
+                "M=D\n" +
+                "@R14\n" +
+                "A=M\n" +
+                "0;JMP"
+            );
+        }
+        static string Goto_Command(string label)
+        {
+            return (
+                "@" + label + '\n' +
+                "0;JMP"
+            );
+        }
+        static string If_goto_Command(string label)
+        {
+            return (
+                "@SP\n" +
+                "AM=M-1\n" +
+                "D=M\n" +
+                '@' + label + '\n' +
+                "D;JNE"
+            );
         }
         static string Arithmetic_Logical_Command(string operation)
         {
@@ -275,6 +467,11 @@ namespace Translator
                 {
                     if (!(temp.StartsWith("//")))
                     {
+                        if (temp.Contains("//"))
+                        {
+                            temp = temp.Substring(0, temp.IndexOf("//"));
+                            temp = temp.Trim();
+                        }
                         asm_file.WriteLine("//" + temp);
                         asm_file.WriteLine(Translate(temp.Split(' ')));
                     }
