@@ -1,0 +1,66 @@
+class Dictionary{
+    field String key;
+    field String value;
+    field Dictionary next;
+
+    //constructor for initializing Dictionary
+    constructor Dictionary new(String arg1,String arg2)
+    {
+        let key=arg1;
+        let value=arg2;
+        let next=null;
+        return this;
+    }
+
+    method String getKey(){return key;}
+    method String getValue(){return value;}
+    method int getNext(){return next;}
+
+    //sets next value to current object
+    method void setNext(Dictionary arg){
+        var Dictionary current;
+        let current=this;
+        let next=arg;
+        return;
+    }
+
+    //Adds new item(key,value) to existing Dictionary
+    method void Add(String arg1,String arg2){
+        var Dictionary current;
+        let current=this;
+        while(~(current.getNext()=null))
+        {
+            let current=current.getNext();
+        }
+        do current.setNext(Dictionary.new(arg1,arg2));
+        return;
+    }
+
+    //Erases all data in Dictionary
+    method void Erase()
+    {
+        if (~(next = null)) {
+            do next.Erase();
+        }
+        // Uses an OS routine to recycle this object.
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    //Prints all keys and values of Dictionary
+    method void Print()
+    {
+        var Dictionary current;
+        let current=this;
+        while(~(current=null))
+        {
+            do Output.printString(current.getKey());
+            do Output.printString(" : ");
+            do Output.printString(current.getValue());
+            do Output.println();
+            do Output.println();
+            let current=current.getNext();
+        }
+        return;
+    }
+}

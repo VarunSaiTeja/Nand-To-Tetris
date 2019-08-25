@@ -1,0 +1,31 @@
+/*Dictionary is user defined class can add (key,value) pair to dictionary.
+Key is word to find meaning, Value is meaning of the word.
+key & value is string type.
+As jack don't support string comparision, we can't get value associated with that key.
+But we can print all the data of dictionary
+*/
+
+class Main {
+   function void main() {
+       var Dictionary dict;
+
+       do Output.printString("My Dictionary");
+       do Output.println();
+       do Output.println();
+       
+
+       //Below line calls a constructor for Creating new object
+       let dict = Dictionary.new("talent","natural ability to do something good"); 
+
+       do dict.Add("money","exchange in the form of banknotes");
+       do dict.Add("portal","doorway, gate, or other entrance");
+       do dict.Print();
+
+       do dict.Erase();  //Erases data in dictionary
+       
+       do dict.Add("online","controlled by or connected to a computer");
+       do dict.Add("mooc","course available over the Internet for free");
+       do dict.Print();
+       return;
+   }
+}
