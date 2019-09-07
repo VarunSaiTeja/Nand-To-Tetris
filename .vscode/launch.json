@@ -10,9 +10,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/projects/08/VM Translator/bin/Debug/netcoreapp2.1/VM Translator.dll",
+            "program": "${workspaceFolder}/projects/10/Jack Analyzer/bin/Debug/netcoreapp2.2/Jack Analyzer.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/projects/08/VM Translator",
+            "cwd": "${workspaceFolder}/projects/10/Jack Analyzer",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
             "console": "externalTerminal",
             "stopAtEntry": false

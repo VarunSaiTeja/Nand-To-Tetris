@@ -1,0 +1,11 @@
+D:\Coding\Nand To Tetris\projects\10\Jack Analyzer\bin\Debug\netcoreapp2.2\Jack Analyzer.deps.json
+D:\Coding\Nand To Tetris\projects\10\Jack Analyzer\bin\Debug\netcoreapp2.2\Jack Analyzer.runtimeconfig.json
+D:\Coding\Nand To Tetris\projects\10\Jack Analyzer\bin\Debug\netcoreapp2.2\Jack Analyzer.runtimeconfig.dev.json
+D:\Coding\Nand To Tetris\projects\10\Jack Analyzer\bin\Debug\netcoreapp2.2\Jack Analyzer.dll
+D:\Coding\Nand To Tetris\projects\10\Jack Analyzer\bin\Debug\netcoreapp2.2\Jack Analyzer.pdb
+D:\Coding\Nand To Tetris\projects\10\Jack Analyzer\obj\Debug\netcoreapp2.2\Jack Analyzer.csprojAssemblyReference.cache
+D:\Coding\Nand To Tetris\projects\10\Jack Analyzer\obj\Debug\netcoreapp2.2\Jack Analyzer.csproj.CoreCompileInputs.cache
+D:\Coding\Nand To Tetris\projects\10\Jack Analyzer\obj\Debug\netcoreapp2.2\Jack Analyzer.AssemblyInfoInputs.cache
+D:\Coding\Nand To Tetris\projects\10\Jack Analyzer\obj\Debug\netcoreapp2.2\Jack Analyzer.AssemblyInfo.cs
+D:\Coding\Nand To Tetris\projects\10\Jack Analyzer\obj\Debug\netcoreapp2.2\Jack Analyzer.dll
+D:\Coding\Nand To Tetris\projects\10\Jack Analyzer\obj\Debug\netcoreapp2.2\Jack Analyzer.pdb

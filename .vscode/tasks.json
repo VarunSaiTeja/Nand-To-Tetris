@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/projects/08/VM Translator/VM Translator.csproj"
+                "${workspaceFolder}/projects/10/Jack Analyzer/Jack Analyzer.csproj"
             ],
             "problemMatcher": "$tsc"
         },
@@ -17,7 +17,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/projects/08/VM Translator/VM Translator.csproj"
+                "${workspaceFolder}/projects/10/Jack Analyzer/Jack Analyzer.csproj"
             ],
             "problemMatcher": "$tsc"
         },
@@ -28,7 +28,7 @@
             "args": [
                 "watch",
                 "run",
-                "${workspaceFolder}/projects/06/Assembler/Assembler.csproj"
+                "${workspaceFolder}/projects/10/Jack Analyzer/Jack Analyzer.csproj"
             ],
             "problemMatcher": "$tsc"
         }
